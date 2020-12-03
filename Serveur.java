@@ -1,9 +1,13 @@
 import java.io.*;
 import java.net.*;
+import java.util.Collection;
+import java.util.LinkedList;
 
 
 public class Serveur  {
-
+    
+	public static  int i = 0 ;
+	
 	private static ServerSocket ecoute;
 	private static int PORT = 51919;
 	//Ports disponibles 49152 jusqu'à 65535
@@ -18,9 +22,16 @@ public class Serveur  {
 			 
 			while (true) {
 			// On accepte une demande de connexion d'un client
-			System.out.println("En attente de connexion sur le port "+PORT);
+			System.out.println("Serveur en attente de connexion sur le port : "+PORT);
 			Socket client=ecoute.accept();
-			System.out.println("Client connecté : "+client.getInetAddress().toString());
+			System.out.println("Client connecté(Serveur) : "+client.getInetAddress().toString());
+			
+			MonThread  P = new MonThread("Thread"+i,client) ;
+			P.start();
+			i++;
+			
+			/*
+			
 			
 			OutputStream out = client.getOutputStream();
 			ObjectOutputStream objOut = new ObjectOutputStream(out);
@@ -41,7 +52,7 @@ public class Serveur  {
 			}
 			
 			
-			client.close();
+			client.close();*/
 			
 			}
 		}
