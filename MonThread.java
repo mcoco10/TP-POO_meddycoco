@@ -11,7 +11,6 @@ import java.net.*;
 public class MonThread extends Thread{
 
 	
-	private static int PORT = 51919;
 	private Socket client;
 	
 	

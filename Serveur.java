@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -7,7 +8,8 @@ import java.util.LinkedList;
 public class Serveur  {
     
 	public static  int i = 0 ;
-	
+	public static ArrayList<MonThread> Ps = new ArrayList<MonThread>() ;
+	public LinkedList<Object> L = new LinkedList<Object>();
 	private static ServerSocket ecoute;
 	private static int PORT = 51919;
 	//Ports disponibles 49152 jusqu'à 65535
@@ -26,8 +28,10 @@ public class Serveur  {
 			Socket client=ecoute.accept();
 			System.out.println("Client connecté(Serveur) : "+client.getInetAddress().toString());
 			
+			
 			MonThread  P = new MonThread("Thread"+i,client) ;
 			P.start();
+			Ps.add(P);
 			i++;
 			
 			/*
